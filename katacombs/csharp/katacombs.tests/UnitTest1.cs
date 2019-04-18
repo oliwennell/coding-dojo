@@ -65,7 +65,7 @@ namespace Tests
         {
             var player = new Player();
 
-            player.Move(command);
+            player.Act(command);
 
             Assert.That(player.Coordinates, 
                 Is.EquivalentTo(new[]{ expectedX, expectedY, expectedZ }));
@@ -80,9 +80,9 @@ namespace Tests
         {
             var player = new Player();
 
-            player.Move(command1);
-            player.Move(command2);
-            player.Move(command3);
+            player.Act(command1);
+            player.Act(command2);
+            player.Act(command3);
 
             Assert.That(player.Coordinates, 
                 Is.EquivalentTo(new[]{ expectedX, expectedY, expectedZ }));
