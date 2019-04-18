@@ -5,13 +5,13 @@ namespace katacombs
     
     public class GameMap
     {
-        public string GetTitle(int[] location)
+        public string GetTitle(int[] coordinates)
         {
-            return Location[$"{location[0]},{location[1]},{location[2]}"].Title;
+            return Location[$"{coordinates[0]},{coordinates[1]},{coordinates[2]}"].Title;
         }
-        public string GetDescription(int[] location)
+        public string GetDescription(int[] coordinates)
         {
-            return Location[$"{location[0]},{location[1]},{location[2]}"].Description;
+            return Location[$"{coordinates[0]},{coordinates[1]},{coordinates[2]}"].Description;
         }
 
         Dictionary<string, Location> Location = new Dictionary<string,Location> {

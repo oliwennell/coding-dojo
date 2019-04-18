@@ -4,9 +4,9 @@ namespace katacombs
     {
         public Player()
         {
-            Position = new int[]{0,0,0};
+            Coordinates = new int[]{0,0,0};
         }
 
-        public int[] Position { get; }
+        public int[] Coordinates { get; }
     }
 }
