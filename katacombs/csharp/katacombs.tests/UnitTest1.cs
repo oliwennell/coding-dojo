@@ -53,5 +53,39 @@ namespace Tests
             Assert.That(thisMap.GetDescription(new [] {x,y,z}), 
                 Is.EqualTo(expectedDescription));
         }
+
+        [TestCase("GO N", 0, 1, 0)]
+        [TestCase("GO S", 0, -1, 0)]
+        [TestCase("GO W", -1, 0, 0)]
+        [TestCase("GO E", 1, 0, 0)]
+        [TestCase("GO UP", 0, 0, 1)]
+        [TestCase("GO DOWN", 0, 0, -1)]
+        public void Moving_the_player(
+            string command, int expectedX, int expectedY, int expectedZ)
+        {
+            var player = new Player();
+
+            player.Move(command);
+
+            Assert.That(player.Coordinates, 
+                Is.EquivalentTo(new[]{ expectedX, expectedY, expectedZ }));
+        }
+
+        [TestCase("GO N", "GO E", "GO S", 1, 0, 0)]
+        [TestCase("GO W", "GO W", "GO W", -3, 0, 0)]
+        [TestCase("GO UP", "GO UP", "GO UP", 0, 0, 3)]
+        [TestCase("GO DOWN", "GO DOWN", "GO DOWN", 0, 0, -3)]
+        public void Moving_in_different_directions(
+            string command1, string command2, string command3, int expectedX, int expectedY, int expectedZ)
+        {
+            var player = new Player();
+
+            player.Move(command1);
+            player.Move(command2);
+            player.Move(command3);
+
+            Assert.That(player.Coordinates, 
+                Is.EquivalentTo(new[]{ expectedX, expectedY, expectedZ }));
+        }
     }
 }
