@@ -4,8 +4,11 @@ namespace katacombs
     {
         public Player Player { get; set; }
         public GameMap GameMap { get; set; }
+        private IPrintThings printer;
+
         public Game(IPrintThings printer = null)
         {
+            this.printer = printer;
             Player = new Player();
             GameMap = new GameMap();
         }
@@ -34,9 +37,10 @@ namespace katacombs
             }
         }
 
-        private void Look(string direction){
-            
+        private void Look(string direction){            
+            var title = this.GameMap.GetTitle(this.Player.Coordinates);
+            var description = this.GameMap.GetDescription(this.Player.Coordinates);
+            printer.Print(new Location(title, description));
         }
     }
-
 }

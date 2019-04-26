@@ -91,7 +91,7 @@ namespace Tests
 
         [Test]
         public void When_player_looks_to_a_direction_then_location_does_not_change(){
-            var game = new Game();
+            var game = new Game(new FakePrinter());
             game.Act("LOOK UP");
             Assert.That(game.Player.Coordinates, Is.EquivalentTo(new [] {0,0,0}));
         }
