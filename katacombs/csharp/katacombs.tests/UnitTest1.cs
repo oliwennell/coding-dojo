@@ -1,6 +1,7 @@
 using katacombs;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace Tests
 {
@@ -98,12 +99,19 @@ namespace Tests
         [Test]
         public void When_player_looks_then_what_they_see_is_printed(){
 
-            var game = new Game();
+            var fakePrinter = new FakePrinter();
+            var game = new Game(fakePrinter);
             game.Act("LOOK UP");
-            Assert.Fail();
+            Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
         }
     }
 
-    public class FakePrinter{
+    public class FakePrinter : IPrintThings
+    {
+        public List<Location> StuffIPrinted = new List<Location>();
+        public void Print(Location location)
+        {
+            StuffIPrinted.Add(location);
+        }
     }
 }

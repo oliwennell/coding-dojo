@@ -4,7 +4,7 @@ namespace katacombs
     {
         public Player Player { get; set; }
         public GameMap GameMap { get; set; }
-        public Game()
+        public Game(IPrintThings printer = null)
         {
             Player = new Player();
             GameMap = new GameMap();
@@ -19,7 +19,7 @@ namespace katacombs
             else if (command.StartsWith("LOOK")){
                 Look(direction);
             }
-           
+        
         }
 
         private void Move(string direction){
