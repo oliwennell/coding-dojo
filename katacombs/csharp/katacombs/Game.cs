@@ -21,8 +21,7 @@ namespace katacombs
             }
             else if (command.StartsWith("LOOK")){
                 Look(direction);
-            }
-        
+            }        
         }
 
         private void Move(string direction){
@@ -37,7 +36,12 @@ namespace katacombs
             }
         }
 
-        private void Look(string direction){            
+        private void Look(string direction){ 
+
+            var lookingAtCoordinates = this.Player.Coordinates;     
+            
+            //TODO: change lookingAtCoordinates on Player
+
             var title = this.GameMap.GetTitle(this.Player.Coordinates);
             var description = this.GameMap.GetDescription(this.Player.Coordinates);
             printer.Print(new Location(title, description));

@@ -2,6 +2,7 @@ using katacombs;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tests
 {
@@ -103,6 +104,8 @@ namespace Tests
             var game = new Game(fakePrinter);
             game.Act("LOOK UP");
             Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
+            Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo("title one"));
+            Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo("description 1"));
         }
     }
 
