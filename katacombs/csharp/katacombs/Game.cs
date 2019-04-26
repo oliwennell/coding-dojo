@@ -9,6 +9,19 @@ namespace katacombs
             Player = new Player();
             GameMap = new GameMap();
         }
+
+        public void Act(string command)
+        {
+            switch(command.Split(' ')[1]) 
+            {
+                case "W": Player.MoveWest(); break;
+                case "E": Player.MoveEast(); break;
+                case "S": Player.MoveSouth(); break;
+                case "N": Player.MoveNorth(); break;
+                case "DOWN": Player.MoveDown(); break;
+                case "UP": Player.MoveUp(); break;
+            }
+        }
     }
 
 }

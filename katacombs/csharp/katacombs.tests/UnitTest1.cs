@@ -63,11 +63,11 @@ namespace Tests
         public void Moving_the_player(
             string command, int expectedX, int expectedY, int expectedZ)
         {
-            var player = new Player();
+            var game = new Game();
 
-            player.Act(command);
+            game.Act(command);
 
-            Assert.That(player.Coordinates, 
+            Assert.That(game.Player.Coordinates, 
                 Is.EquivalentTo(new[]{ expectedX, expectedY, expectedZ }));
         }
 
@@ -78,13 +78,13 @@ namespace Tests
         public void Moving_in_different_directions(
             string command1, string command2, string command3, int expectedX, int expectedY, int expectedZ)
         {
-            var player = new Player();
+            var game = new Game();
 
-            player.Act(command1);
-            player.Act(command2);
-            player.Act(command3);
+            game.Act(command1);
+            game.Act(command2);
+            game.Act(command3);
 
-            Assert.That(player.Coordinates, 
+            Assert.That(game.Player.Coordinates, 
                 Is.EquivalentTo(new[]{ expectedX, expectedY, expectedZ }));
         }
     }
