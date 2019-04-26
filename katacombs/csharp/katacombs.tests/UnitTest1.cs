@@ -87,5 +87,23 @@ namespace Tests
             Assert.That(game.Player.Coordinates, 
                 Is.EquivalentTo(new[]{ expectedX, expectedY, expectedZ }));
         }
+
+        [Test]
+        public void When_player_looks_to_a_direction_then_location_does_not_change(){
+            var game = new Game();
+            game.Act("LOOK UP");
+            Assert.That(game.Player.Coordinates, Is.EquivalentTo(new [] {0,0,0}));
+        }
+
+        [Test]
+        public void When_player_looks_then_what_they_see_is_printed(){
+
+            var game = new Game();
+            game.Act("LOOK UP");
+            Assert.Fail();
+        }
+    }
+
+    public class FakePrinter{
     }
 }

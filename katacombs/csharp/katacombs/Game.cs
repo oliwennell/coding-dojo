@@ -12,7 +12,18 @@ namespace katacombs
 
         public void Act(string command)
         {
-            switch(command.Split(' ')[1]) 
+            var direction = command.Split(' ')[1];
+            if (command.StartsWith("GO")) {
+                Move(direction);
+            }
+            else if (command.StartsWith("LOOK")){
+                Look(direction);
+            }
+           
+        }
+
+        private void Move(string direction){
+            switch (direction)
             {
                 case "W": Player.MoveWest(); break;
                 case "E": Player.MoveEast(); break;
@@ -21,6 +32,10 @@ namespace katacombs
                 case "DOWN": Player.MoveDown(); break;
                 case "UP": Player.MoveUp(); break;
             }
+        }
+
+        private void Look(string direction){
+            
         }
     }
 
