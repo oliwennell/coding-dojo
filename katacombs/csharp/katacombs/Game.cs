@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace katacombs
 {
     public class Game
@@ -36,14 +38,22 @@ namespace katacombs
             }
         }
 
-        private void Look(string direction){ 
+        private void Look(string direction){
 
-            var lookingAtCoordinates = this.Player.Coordinates;     
+            var lookingAtCoordinates = this.Player.Coordinates.ToArray();
             
-            //TODO: change lookingAtCoordinates on Player
-
-            var title = this.GameMap.GetTitle(this.Player.Coordinates);
-            var description = this.GameMap.GetDescription(this.Player.Coordinates);
+            switch (direction)
+            {
+                case "DOWN": lookingAtCoordinates[2]--; break;
+                case "UP": lookingAtCoordinates[2]++; break;
+                case "W": lookingAtCoordinates[0]--; break;
+                case "E": lookingAtCoordinates[0]++; break;
+                case "S": lookingAtCoordinates[1]--; break;
+                case "N": lookingAtCoordinates[1]++; break;
+            }
+            
+            var title = this.GameMap.GetTitle(lookingAtCoordinates);
+            var description = this.GameMap.GetDescription(lookingAtCoordinates);
             printer.Print(new Location(title, description));
         }
     }

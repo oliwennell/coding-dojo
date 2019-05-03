@@ -97,15 +97,23 @@ namespace Tests
             Assert.That(game.Player.Coordinates, Is.EquivalentTo(new [] {0,0,0}));
         }
 
-        [Test]
-        public void When_player_looks_then_what_they_see_is_printed(){
+        [TestCase("UP", "title one", "description 1")]
+        [TestCase("DOWN", "the ground", "some dusty weeds")]
+        [TestCase("N", "the north", "some north birds")]
+        [TestCase("S", "the south", "some south birds")]
+        [TestCase("W", "the west", "some west snakes")]
+        [TestCase("E", "the east", "some east snakes")]
+        public void When_player_looks_then_what_they_see_is_printed(
+            string direction, string expectedTitle, string expectedDescription){
 
             var fakePrinter = new FakePrinter();
             var game = new Game(fakePrinter);
-            game.Act("LOOK UP");
+            
+            game.Act($"LOOK {direction}");
+
             Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
-            Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo("title one"));
-            Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo("description 1"));
+            Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
+            Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
         }
     }
 
