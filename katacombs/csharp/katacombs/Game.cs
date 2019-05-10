@@ -18,15 +18,18 @@ namespace katacombs
         public void Act(string command)
         {
             var direction = command.Split(' ')[1];
-            if (command.StartsWith("GO")) {
+            if (command.StartsWith("GO"))
+            {
                 Move(direction);
             }
-            else if (command.StartsWith("LOOK")){
+            else if (command.StartsWith("LOOK"))
+            {
                 Look(direction);
-            }        
+            }
         }
 
-        private void Move(string direction){
+        private void Move(string direction)
+        {
             switch (direction)
             {
                 case "W": Player.MoveWest(); break;
@@ -38,10 +41,11 @@ namespace katacombs
             }
         }
 
-        private void Look(string direction){
+        private void Look(string direction)
+        {
 
             var lookingAtCoordinates = this.Player.Coordinates.ToArray();
-            
+
             switch (direction)
             {
                 case "W": lookingAtCoordinates[0]--; break;
@@ -51,10 +55,19 @@ namespace katacombs
                 case "DOWN": lookingAtCoordinates[2]--; break;
                 case "UP": lookingAtCoordinates[2]++; break;
             }
-            
-            var title = this.GameMap.GetTitle(lookingAtCoordinates);
-            var description = this.GameMap.GetDescription(lookingAtCoordinates);
-            printer.Print(new Location(title, description));
+
+
+            try
+            {
+                var title = this.GameMap.GetTitle(lookingAtCoordinates);
+                var description = this.GameMap.GetDescription(lookingAtCoordinates);
+                printer.Print(new Location(title, description));
+            }
+            catch
+            {
+
+                printer.Print(new Location("Not found location", "Nothing interesting to look at here"));
+            }
         }
     }
 }

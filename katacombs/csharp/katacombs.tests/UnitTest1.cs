@@ -115,7 +115,24 @@ namespace Tests
             Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
             Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
         }
+
+        [TestCase("N")]
+        public void When_player_looks_at_non_existant_location(string direction)
+        {
+            var fakePrinter = new FakePrinter();
+            var game = new Game(fakePrinter);
+            game.Act("GO UP");
+            game.Act("GO N");
+            game.Act($"LOOK {direction}");
+            var expectedTitle = "Not found location";
+            var expectedDescription = "Nothing interesting to look at here";
+
+            Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
+            Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
+            Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
+        }
     }
+
 
     public class FakePrinter : IPrintThings
     {
