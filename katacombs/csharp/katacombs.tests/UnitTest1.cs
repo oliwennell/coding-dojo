@@ -115,14 +115,36 @@ namespace Tests
             Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
             Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
         }
+
+        [TestCase("PLOP 123", "I don't know how to PLOP 123")]
+        [TestCase("GO 123", "I don't know how to GO 123")]
+        [TestCase("GO123", "I don't know how to GO123")]
+        public void When_player_inputs_incorrect_command_then_error_message_printed(
+            string command,
+            string expectedMessage
+        ) {
+            var fakePrinter = new FakePrinter();
+            var game = new Game(fakePrinter);
+            
+            game.Act(command);
+
+            Assert.That(fakePrinter.ErrorsPrinted, Has.Count.GreaterThan(0));
+            Assert.That(fakePrinter.ErrorsPrinted.First(), Is.EqualTo(expectedMessage));
+        }
     }
 
     public class FakePrinter : IPrintThings
     {
         public List<Location> StuffIPrinted = new List<Location>();
+        public List<string> ErrorsPrinted = new List<string>();
         public void Print(Location location)
         {
             StuffIPrinted.Add(location);
+        }
+
+        public void PrintError(string message)
+        {
+            ErrorsPrinted.Add(message);
         }
     }
 }

@@ -17,17 +17,38 @@ namespace katacombs
 
         public void Act(string command)
         {
-            var direction = command.Split(' ')[1];
+            var commandItems = command.Split(' ');
+            if (commandItems.Length != 2)
+            {
+                this.printer.PrintError($"I don't know how to {command}");
+                return;
+            }
+
+            var direction = commandItems[1];
+            if (!ValidateDirecton(direction))
+            {
+                this.printer.PrintError($"I don't know how to {command}");
+                return;
+            }
+
             if (command.StartsWith("GO")) {
                 Move(direction);
             }
-            else if (command.StartsWith("LOOK")){
+            else if (command.StartsWith("LOOK")) {
                 Look(direction);
-            }        
+            }
+            else {
+                this.printer.PrintError($"I don't know how to {command}");
+            }       
         }
 
-        private void Move(string direction){
+        private bool ValidateDirecton(string direction)
+        {
+            string[] validDirections = new []{ "N", "S", "E", "W", "UP", "DOWN" };
+            return validDirections.Contains(direction);
+        }
 
+        private void Move(string direction) {
             Player.Move(direction);
         }
 
