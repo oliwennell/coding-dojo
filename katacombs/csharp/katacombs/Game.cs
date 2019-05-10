@@ -56,16 +56,20 @@ namespace katacombs
                 case "UP": lookingAtCoordinates[2]++; break;
             }
 
-
+            var obstacleLocation = this.GameMap.GetObstacle(this.Player.Coordinates, lookingAtCoordinates);
+            
             try
             {
-                var title = this.GameMap.GetTitle(lookingAtCoordinates);
-                var description = this.GameMap.GetDescription(lookingAtCoordinates);
-                printer.Print(new Location(title, description));
+                if(obstacleLocation == null){
+                    var title = this.GameMap.GetTitle(lookingAtCoordinates);
+                    var description = this.GameMap.GetDescription(lookingAtCoordinates);
+                    printer.Print(new Location(title, description));
+                }else{
+                    printer.Print(obstacleLocation);
+                }   
             }
             catch
             {
-
                 printer.Print(new Location("Not found location", "Nothing interesting to look at here"));
             }
         }
