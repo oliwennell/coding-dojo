@@ -27,15 +27,8 @@ namespace katacombs
         }
 
         private void Move(string direction){
-            switch (direction)
-            {
-                case "W": Player.MoveWest(); break;
-                case "E": Player.MoveEast(); break;
-                case "S": Player.MoveSouth(); break;
-                case "N": Player.MoveNorth(); break;
-                case "DOWN": Player.MoveDown(); break;
-                case "UP": Player.MoveUp(); break;
-            }
+
+            Player.Move(direction);
         }
 
         private void Look(string direction)

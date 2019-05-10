@@ -2,9 +2,14 @@ namespace katacombs
 {
     public class Player
     {
+        public int[] Coordinates { get; private set; }
         public Player()
         {
             Coordinates = new int[]{0,0,0};
+        }
+
+        public void Move(string direction) {
+            Coordinates = katacombs.Coordinates.Calculate(Coordinates, direction);
         }
 
         public void MoveWest() => Coordinates[0] --;
@@ -14,6 +19,5 @@ namespace katacombs
         public void MoveDown() => Coordinates[2] --;
         public void MoveUp() => Coordinates[2] ++;
         
-        public int[] Coordinates { get; }
     }
 }
