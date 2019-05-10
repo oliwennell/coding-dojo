@@ -38,19 +38,9 @@ namespace katacombs
             }
         }
 
-        private void Look(string direction){
-
-            var lookingAtCoordinates = this.Player.Coordinates.ToArray();
-            
-            switch (direction)
-            {
-                case "W": lookingAtCoordinates[0]--; break;
-                case "E": lookingAtCoordinates[0]++; break;
-                case "S": lookingAtCoordinates[1]--; break;
-                case "N": lookingAtCoordinates[1]++; break;
-                case "DOWN": lookingAtCoordinates[2]--; break;
-                case "UP": lookingAtCoordinates[2]++; break;
-            }
+        private void Look(string direction)
+        {
+            var lookingAtCoordinates = Coordinates.Calculate(this.Player.Coordinates, direction);
             
             var title = this.GameMap.GetTitle(lookingAtCoordinates);
             var description = this.GameMap.GetDescription(lookingAtCoordinates);
