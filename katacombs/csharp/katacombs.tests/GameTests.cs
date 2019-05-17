@@ -91,6 +91,46 @@ namespace Tests
                 Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
                 Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
             }
+
+            [TestCase("N")]
+            [TestCase("S")]
+            [TestCase("W")]
+            [TestCase("E")]
+            [TestCase("UP")]
+            [TestCase("DOWN")]
+            public void When_player_looks_at_non_existant_location(string direction)
+            {
+                var fakePrinter = new FakePrinter();
+                var game = new Game(fakePrinter);
+                game.Act("GO UP");
+                game.Act("GO N");
+                game.Act("GO UP");
+                
+                game.Act($"LOOK {direction}");
+                var expectedTitle = "Not found location";
+                var expectedDescription = "Nothing interesting to look at here";
+
+                Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
+                Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
+                Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
+            }
+
+            [TestCase("E", "Ice wall", "Ice wall description")]
+            // [TestCase("S", "Locked door", "Locked door description")]
+            public void When_players_look_and_the_path_is_blocked_by_an_obstacle(
+                string direction, string expectedTitle, string expectedDescription){
+                var fakePrinter = new FakePrinter();
+                var game = new Game(fakePrinter);
+                
+                game.Act("GO E");
+                game.Act($"LOOK {direction}");
+                
+
+                Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
+                Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
+                Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
+
+            }
         }
 
         public class Error_handling

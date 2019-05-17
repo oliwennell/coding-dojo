@@ -6,3 +6,8 @@ future thoughts
 * what about looking down beer cellars etc.
 * what about going through walls etc.
 * bounds of the map
+
+
+
+***Obstacles
+* looking south and west is not yet handling obstacles, 1 broken test
