@@ -55,10 +55,23 @@ namespace katacombs
         private void Look(string direction)
         {
             var lookingAtCoordinates = Coordinates.Calculate(this.Player.Coordinates, direction);
+
+            var obstacleLocation = this.GameMap.GetObstacle(this.Player.Coordinates, lookingAtCoordinates);
             
-            var title = this.GameMap.GetTitle(lookingAtCoordinates);
-            var description = this.GameMap.GetDescription(lookingAtCoordinates);
-            printer.Print(new Location(title, description));
+            try
+            {
+                if(obstacleLocation == null){
+                    var title = this.GameMap.GetTitle(lookingAtCoordinates);
+                    var description = this.GameMap.GetDescription(lookingAtCoordinates);
+                    printer.Print(new Location(title, description));
+                }else{
+                    printer.Print(obstacleLocation);
+                }   
+            }
+            catch
+            {
+                printer.Print(new Location("Not found location", "Nothing interesting to look at here"));
+            }
         }
     }
 }
