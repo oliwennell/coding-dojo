@@ -5,6 +5,12 @@ namespace katacombs
     
     public class GameMap
     {
+
+        public GameMap(Dictionary<string,Location> location = null)
+        {
+            Location = location ?? Location;
+        }
+
         public string GetTitle(int[] coordinates)
         {
             return Location[$"{coordinates[0]},{coordinates[1]},{coordinates[2]}"].Title;

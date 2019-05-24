@@ -8,11 +8,11 @@ namespace katacombs
         public GameMap GameMap { get; set; }
         private IPrintThings printer;
 
-        public Game(IPrintThings printer = null)
+        public Game(IPrintThings printer = null, GameMap gameMap = null)
         {
             this.printer = printer;
             Player = new Player();
-            GameMap = new GameMap();
+            GameMap = gameMap ?? new GameMap();
         }
 
         public void Act(string command)
@@ -63,14 +63,14 @@ namespace katacombs
                 if(obstacleLocation == null){
                     var title = this.GameMap.GetTitle(lookingAtCoordinates);
                     var description = this.GameMap.GetDescription(lookingAtCoordinates);
-                    printer.Print(new Location(title, description));
+                    printer.Print(new Location(title, description).ToString());
                 }else{
-                    printer.Print(obstacleLocation);
+                    printer.Print(obstacleLocation.ToString());
                 }   
             }
             catch
             {
-                printer.Print(new Location("Not found location", "Nothing interesting to look at here"));
+                printer.Print(new Location("Not found location", "Nothing interesting to look at here").ToString());
             }
         }
     }

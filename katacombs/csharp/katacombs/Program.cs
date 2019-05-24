@@ -6,7 +6,7 @@ namespace katacombs
     {
         public class RealPrinter : IPrintThings
         {
-            public void Print(Location location)
+            public void Print(string location)
             {
                 Console.WriteLine(location.ToString());
             }

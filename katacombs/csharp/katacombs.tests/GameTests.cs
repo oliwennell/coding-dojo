@@ -88,8 +88,8 @@ namespace Tests
                 game.Act($"LOOK {direction}");
 
                 Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
-                Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
-                Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
+                Assert.That(fakePrinter.StuffIPrinted.First(), Does.Contain(expectedTitle));
+                Assert.That(fakePrinter.StuffIPrinted.First(), Does.Contain(expectedDescription));
             }
 
             [TestCase("N")]
@@ -111,8 +111,8 @@ namespace Tests
                 var expectedDescription = "Nothing interesting to look at here";
 
                 Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
-                Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
-                Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
+                Assert.That(fakePrinter.StuffIPrinted.First(), Does.Contain(expectedTitle));
+                Assert.That(fakePrinter.StuffIPrinted.First(), Does.Contain(expectedDescription));
             }
 
             [TestCase("E", "Ice wall", "Ice wall description")]
@@ -127,9 +127,48 @@ namespace Tests
                 
 
                 Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
-                Assert.That(fakePrinter.StuffIPrinted.First().Title, Is.EqualTo(expectedTitle));
-                Assert.That(fakePrinter.StuffIPrinted.First().Description, Is.EqualTo(expectedDescription));
+                Assert.That(fakePrinter.StuffIPrinted.First(), Does.Contain(expectedTitle));
+                Assert.That(fakePrinter.StuffIPrinted.First(), Does.Contain(expectedDescription));
+            }
 
+        }
+
+    
+
+        public class TakeItems
+        {
+            [Test]
+            public void When_player_takes_existing_item()
+            {
+                var fakePrinter = new FakePrinter();
+                var customGameMap = new GameMap(
+                    new Dictionary<string, Location>{
+                        {"0,0,0", new Location("title zero", "description 0")},
+                        {"0,1,0", new Location("north", "There is a wooden table. It has a bottle of beer and a key on it")},
+                    }
+                );
+                var game = new Game(new FakePrinter());
+
+                game.Act("LOOK N");
+                game.Act("TAKE THING");
+
+                // Assert.That(fakePrinter.StuffIPrinted, Has.Count.GreaterThan(0));
+                // Assert.That(fakePrinter.ErrorsPrinted, Has.Count.GreaterThan(0));
+            }
+        }
+
+         public class ItsMyBagBaby
+        {
+            [Test]
+            public void When_player_looks_in_empty_bag()
+            {
+                var fakePrinter = new FakePrinter();
+                var game = new Game(fakePrinter);
+
+                game.Act("BAG");
+
+                // Assert.That(fakePrinter.StuffIPrinted.First(), Is.EqualTo("Your bag contains: Nothing!"));
+                Assert.That(fakePrinter.ErrorsPrinted.Count, Is.EqualTo(0));
             }
         }
 
@@ -155,11 +194,11 @@ namespace Tests
 
     public class FakePrinter : IPrintThings
     {
-        public List<Location> StuffIPrinted = new List<Location>();
+        public List<string> StuffIPrinted = new List<string>();
         public List<string> ErrorsPrinted = new List<string>();
-        public void Print(Location location)
+        public void Print(string message)
         {
-            StuffIPrinted.Add(location);
+            StuffIPrinted.Add(message);
         }
 
         public void PrintError(string message)

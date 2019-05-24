@@ -1,13 +1,24 @@
-
-next time thoughts
-* think about how we get new coordinates, i.e. condense both switch statements into one function, i.e. create a new Coordinates class perhaps
-
-future thoughts
-* what about looking down beer cellars etc.
-* what about going through walls etc.
-* bounds of the map
+*Write Bag Command on Game.Act (Game.Act("BAG"))
 
 
 
-***Obstacles
-* looking south and west is not yet handling obstacles, 1 broken test
+
+
+
+You are in a dark room.
+
+LOOK N
+
+There is a wooden table. It has a bootle of beer and a key on it
+
+TAKE beer
+
+You have picked up the beer
+
+USE beer
+
+You feel slightly numb and a bit morose
+
+LOOK N
+
+There is a wooden table. It has a fuzzy key on it
