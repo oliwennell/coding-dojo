@@ -1,6 +1,11 @@
 *Write Bag Command on Game.Act (Game.Act("BAG"))
 *Test failing, throwing error. Yay.
 
+** Game.Act("BAG") now exists :tada:
+** Added a method to viewBag and TAKE
+** Need a massive refactor of Act and Player.viewBag
+** Need to add take to the game.Act list of possible actions
+
 
 We are trying to do the below scenario:
 

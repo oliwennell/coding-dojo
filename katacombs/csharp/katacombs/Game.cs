@@ -18,6 +18,12 @@ namespace katacombs
         public void Act(string command)
         {
             var commandItems = command.Split(' ');
+
+            if (command.StartsWith("BAG")) {
+                Bag();
+                return;
+            }
+
             if (commandItems.Length != 2)
             {
                 this.printer.PrintError($"I don't know how to {command}");
@@ -46,6 +52,11 @@ namespace katacombs
         {
             string[] validDirections = new []{ "N", "S", "E", "W", "UP", "DOWN" };
             return validDirections.Contains(direction);
+        }
+
+        private void Bag() {
+            var bag = Player.ViewBag();
+            this.printer.Print(bag.ToString());
         }
 
         private void Move(string direction) {
