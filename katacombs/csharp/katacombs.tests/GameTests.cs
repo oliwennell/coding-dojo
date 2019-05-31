@@ -167,7 +167,7 @@ namespace Tests
 
                 game.Act("BAG");
 
-                // Assert.That(fakePrinter.StuffIPrinted.First(), Is.EqualTo("Your bag contains: Nothing!"));
+                Assert.That(fakePrinter.StuffIPrinted.First(), Is.EqualTo("Your bag contains: Nothing!"));
                 Assert.That(fakePrinter.ErrorsPrinted.Count, Is.EqualTo(0));
             }
         }
