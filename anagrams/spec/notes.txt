@@ -1,0 +1,20 @@
+/*
+
+    hello 
+
+*/
+
+//
+
+const s = `hello
+
+/**/
+
+//
+
+world`;
+
+/*this is some code */ const x = /*hello world*/ 123 /* hello again */; // bye! /*
+
+const y = 5;
+
