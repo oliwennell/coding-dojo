@@ -55,6 +55,11 @@ describe("numerals to digits", () => {
         ["V", 5],
         ["VII", 7],
         ["IX", 9],
+        ["XCVII", 97],
+        ["XL", 40],
+        ["XXXVIII", 38],
+        ["M", 1000],
+        ["CM", 900],
         ["X", 10],
 
     ]

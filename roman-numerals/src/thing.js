@@ -9,7 +9,7 @@ function digitToRoman(digitNumber) {
         const remainder = digitNumber % 5;
         return "V" + "I".repeat(remainder);
     }
-    
+
     if (digitNumber >= 10) {
         const remainder = digitNumber % 10;
         return "X" + "I".repeat(remainder);
@@ -62,54 +62,29 @@ function digitToRomanV2(digitNumber) {
 function romanToDigit(roman) {
 
     const keyValueObj = {
-        "I":1,
-        "V":5,
-        "X":10
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L":50,
+        "C":100,
+        "D":500,
+        "M":1000
     }
-    
+
     const romanArray = roman.split("");
     let numericalArray = romanArray.map(x => keyValueObj[x])
 
-    // todo: trying to make a general solution...
-
-
     let digit = 0;
-    let previous;
+    let previous = 0;
 
-    romanArray.forEach((element, index) => {
-        if (element === "I"){
-            digit++;
+    numericalArray.forEach(element => {
+        if (element <= previous) {
+            digit += element
+        } else {
+            digit = digit + element - (2 * previous);
         }
-
-        if (element === "V"){
-            if (previous === "I"){
-                digit=digit + 3
-            } else {
-                digit+=5;
-            }
-        }
-
-        if (element === "X"){
-            if (previous === "I"){
-                digit=digit + 8
-            } else {
-                digit+=10;
-            }
-        }
-
         previous = element;
     });
-
     return digit
-    
-    const countOfIs = roman.split("I").length - 1;
-    const countOfVs = roman.split("V").length - 1;
-
-    return countOfIs + (countOfVs * 5);
-
-    // if (roman === "I") {
-    //     return 1;
-    // }
-
 
 }
