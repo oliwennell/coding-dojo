@@ -28,7 +28,6 @@ namespace katacombs
         }
         private bool HasThreeOfKind()
         {
-            var uniqueValues = new int[];
             return true;
         }
         private bool HasTwoPairs()
