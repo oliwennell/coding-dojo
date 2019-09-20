@@ -1,5 +1,7 @@
-namespace katacombs{
-    public enum TypeOfHand{
+namespace Project
+{
+    public enum TypeOfHand
+    {
         HighCard,
         OnePair,
         TwoPairs,

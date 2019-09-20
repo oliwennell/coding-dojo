@@ -1,6 +1,6 @@
 using System;
 
-namespace katacombs
+namespace Project
 {
     public static class Program
     {

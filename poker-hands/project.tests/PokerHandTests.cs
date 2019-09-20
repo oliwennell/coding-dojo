@@ -1,12 +1,12 @@
-using katacombs;
+using Project;
 using NUnit.Framework;
 
 namespace Tests
 {
     public class PokerHandTests
     {
-        [TestCase("title zero")]
-        public void it_works(string value)
+        [Test]
+        public void it_works()
         {
             Card[] cards = new Card[5] {
                 new Card(14, Suit.Spades),

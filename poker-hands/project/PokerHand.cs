@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace katacombs
+namespace Project
 {
     public class PokerHand
     {
