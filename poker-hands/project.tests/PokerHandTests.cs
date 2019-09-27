@@ -88,6 +88,8 @@ namespace Tests
             Assert.That(hand.GetTypeofHand(), Is.EqualTo(TypeOfHand.ThreeOfKind));
         }
 
+
+
         [TestCase()]
         public void HandCalculatesType_Straight()
         {
