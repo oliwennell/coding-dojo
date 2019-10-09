@@ -19,8 +19,6 @@ namespace Project
         {
             var distinctCount = Cards.Distinct(new CardComparer()).Count();
 
-            Console.WriteLine(distinctCount);
-
             switch (distinctCount)
             {
                 case 5:
@@ -29,32 +27,89 @@ namespace Project
                     return TypeOfHand.OnePair;
                 case 3:
                     return HandleThreeDistinctValues();
+                case 2:
+                    return HandleTwoDistinctValues();
                 default:
                     return TypeOfHand.HighCard;
             }
         }
 
-        public TypeOfHand HandleThreeDistinctValues()
-        { 
+        public TypeOfHand HandleTwoDistinctValues()
+        {
+            var results = Cards.GroupBy(c => c.Value).ToDictionary(card => card.Key, card => card.Count());
 
-             var results = Cards.GroupBy(c => c.Value).ToDictionary(card => card.Key, card => card.Count());
-
-             if (results.Values.Max() == 3) {
-                 return TypeOfHand.ThreeOfKind;
-             }
-             
-            return TypeOfHand.TwoPairs;
+            if (results.Values.Max() == 4)
+            {
+                return TypeOfHand.FourOfKind;
+            }
+            return TypeOfHand.FullHouse;
 
         }
 
-        public TypeOfHand HandleFiveDistinctValue(){
-            int maxValue = Cards.Max( x => x.Value);
-            int minValue = Cards.Min( x => x.Value);
+        public TypeOfHand HandleThreeDistinctValues()
+        {
+            var results = Cards.GroupBy(c => c.Value).ToDictionary(card => card.Key, card => card.Count());
 
-            if ((maxValue-minValue) == 4){
+            return results.Values.Max() == 3 ? TypeOfHand.ThreeOfKind : TypeOfHand.TwoPairs;
+        }
+
+        public TypeOfHand HandleFiveDistinctValue()
+        {
+
+            if (IsRoyalFlush())
+            {
+                return TypeOfHand.RoyalFlush;
+            }
+
+            if (IsStraightFlush())
+            {
+                return TypeOfHand.StraightFlush;
+            }
+
+            if (IsStraight())
+            {
                 return TypeOfHand.Straight;
-            } 
+            }
+
+            if (IsFlush())
+            {
+                return TypeOfHand.Flush;
+            }
+
             return TypeOfHand.HighCard;
         }
+
+        public bool IsStraightFlush() => IsStraight() && IsFlush();
+
+        public bool IsRoyalFlush() => Cards.Max(x => x.Value) == 14 && IsStraightFlush();
+
+        public bool IsStraight() => ContainsLowStraight() || ContainsNormalStraight();
+
+        public bool ContainsNormalStraight()
+        {
+            return (Cards.Max(x => x.Value) - Cards.Min(x => x.Value)) == 4;
+        }
+
+        public bool ContainsLowStraight()
+        {
+            return Cards.Any(x => x.Value == 2) &&
+                Cards.Any(x => x.Value == 3) &&
+                Cards.Any(x => x.Value == 4) &&
+                Cards.Any(x => x.Value == 5) &&
+                Cards.Any(x => x.Value == 14);
+        }
+
+        public bool IsFlush()
+        {
+            List<Suit> SuitList = new List<Suit>();
+            foreach (var item in Cards)
+            {
+                SuitList.Add(item.Suit);
+            }
+
+            return AreAllSuitsTheSame(SuitList);
+        }
+
+        public bool AreAllSuitsTheSame(List<Suit> allSuits) => allSuits.All(x => x == Cards[0].Suit);
     }
 }

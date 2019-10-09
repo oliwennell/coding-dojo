@@ -10,6 +10,7 @@ namespace Project
         Flush,
         FullHouse,
         FourOfKind,
-        StraightFlush
+        StraightFlush,
+        RoyalFlush
     }
 }
