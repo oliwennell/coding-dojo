@@ -15,7 +15,7 @@ describe("", () => {
         const result = parseArgs("-l");
         expect(result).toEqual([
             { logging: true },
-            { ploppy: false }
+            { ploppy: 0 }
         ]);
     });
 
@@ -23,15 +23,15 @@ describe("", () => {
         const result = parseArgs("");
         expect(result).toEqual([
             { logging: false },
-            { ploppy: false }
+            { ploppy: 0 }
         ]);
     });
 
     it("should parse ploppy", () => {
-        const result = parseArgs("-l -p");
+        const result = parseArgs("-l -p 100");
         expect(result).toEqual([
             { logging: true },
-            { ploppy: true }
+            { ploppy: 100 }
         ]);
     });
 
