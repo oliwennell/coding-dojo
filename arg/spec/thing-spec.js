@@ -14,23 +14,30 @@ describe("", () => {
     it("should parse login as true when specified", () => {
         const result = parseArgs("-l");
         expect(result).toEqual([
-            { logging: true }
+            { logging: true },
+            { ploppy: false }
         ]);
     });
 
     it("should parse login as false when not specified", () => {
         const result = parseArgs("");
         expect(result).toEqual([
-            { logging: false }
+            { logging: false },
+            { ploppy: false }
         ]);
     });
 
-    it("should parse ", () => {
+    it("should parse ploppy", () => {
         const result = parseArgs("-l -p");
         expect(result).toEqual([
             { logging: true },
             { ploppy: true }
         ]);
+    });
+
+    it("should throw an error when unrecognsied argument provided", () => {
+        expect(() => parseArgs("-X"))
+            .toThrow("error: you are :(");
     });
 
 });

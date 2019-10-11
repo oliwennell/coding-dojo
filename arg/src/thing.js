@@ -9,22 +9,23 @@ function parseArgs(args) {
         { 
             name: 'ploppy',
             argumentName: '-p',
-        },
-        // port: {
-        //     name: 'port',
-        //     argumentName: '-p'
-        // }
+        }
     ];
 
     const resultObjects = [];
     const splitArgs = args.split(" ");
-    splitArgs.forEach((arg) => {
-        const matchingSchema = schema.find((schemaEntry) => schemaEntry.argumentName === arg)
 
-        const resultObject = {};
-        resultObject[matchingSchema.name] = true;
-        resultObjects.push(resultObject)
-    })
+    splitArgs.forEach((arg) => {
+        const matchingSchema = schema
+            .find((schemaEntry) => schemaEntry.argumentName === arg);
+    });
+
+    schema.forEach(schemaEntry => {
+        const resultObject = {
+            [schemaEntry.name]: splitArgs.includes(schemaEntry.argumentName)
+        };
+        resultObjects.push(resultObject);
+    });
 
     return resultObjects
 }
