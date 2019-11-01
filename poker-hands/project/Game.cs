@@ -6,10 +6,20 @@ namespace Project
     public class Game
     {
         public List<Card> Deck { get; set; }
+        public Player[] Players { get; }
+        private Func<int> randometer;
 
-        public Game()
+
+        public Game(int numberOfPlayers = 2, Func<int> randometer = null)
         {
             Deck = CreateDeck();
+            Players = new Player[numberOfPlayers];
+            for (var i=0; i<numberOfPlayers; i++)
+            {
+                Players[i] = new Player();
+            }
+
+            this.randometer = randometer ?? new Func<int>(() => new Random().Next(0, Deck.Count - 1));
         }
 
         private List<Card> CreateDeck()
@@ -26,12 +36,24 @@ namespace Project
             return initialDeck;
         }
 
-        public Card Deal()
+        public void Start()
+        {
+            for (var i=0; i<5; i++)
+            {
+                foreach (var player in Players)
+                {
+                    Deal(player);
+                }
+            }
+        }
+
+        public Card Deal(Player player)
         {
             var rnd = new Random();
-            int i = rnd.Next(0, Deck.Count - 1);
+            int i = randometer();
             var card = Deck[i];
             Deck.RemoveAt(i);
+            player.Hand.Cards.Add(card);
 
             return card;
         }

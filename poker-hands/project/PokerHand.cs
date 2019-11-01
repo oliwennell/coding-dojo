@@ -6,13 +6,18 @@ namespace Project
 {
     public class PokerHand
     {
-        public readonly Card[] Cards;
+        public readonly List<Card> Cards;
         public int Score;
 
 
         public PokerHand(Card[] cards)
         {
-            Cards = cards;
+            Cards = cards.ToList();
+        }
+
+        public PokerHand()
+        {
+            Cards = new List<Card>();
         }
 
         public TypeOfHand GetTypeofHand()
