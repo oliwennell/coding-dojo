@@ -68,18 +68,17 @@ namespace project.tests
             var game = new Game(randometer: () => 0);
             game.Start();
             var list = game.Players[0].Hand.Cards.ToList();
-            Assert.Multiple(() => {
-            foreach (var card in list)
-            {
-                Console.WriteLine($"Player 1: {card.Value} of {card.Suit}");
-            }
-            list = game.Players[1].Hand.Cards.ToList();
-            foreach (var card in list)
-            {
-                Console.WriteLine($"Player 2: {card.Value} of {card.Suit}");
-            }
-            Assert.Fail();
-            });
+            // Assert.Multiple(() => {
+            // foreach (var card in list)
+            // {
+            //     Console.WriteLine($"Player 1: {card.Value} of {card.Suit}");
+            // }
+            // list = game.Players[1].Hand.Cards.ToList();
+            // foreach (var card in list)
+            // {
+            //     Console.WriteLine($"Player 2: {card.Value} of {card.Suit}");
+            // }
+            // Assert.Fail();
         }
     }
 }
