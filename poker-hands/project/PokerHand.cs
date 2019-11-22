@@ -105,13 +105,11 @@ namespace Project
 
         public bool IsFlush()
         {
-            List<Suit> SuitList = new List<Suit>();
-            foreach (var item in Cards)
-            {
-                SuitList.Add(item.Suit);
-            }
+            // List<Suit> SuitList = new List<Suit>();
 
-            return AreAllSuitsTheSame(SuitList);
+            var x = Cards.Select(c => c.Suit);
+
+            return AreAllSuitsTheSame(x);
         }
 
         public bool AreAllSuitsTheSame(List<Suit> allSuits) => allSuits.All(x => x == Cards[0].Suit);
