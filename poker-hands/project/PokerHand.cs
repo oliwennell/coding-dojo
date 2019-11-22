@@ -9,7 +9,6 @@ namespace Project
         public readonly List<Card> Cards;
         public int Score;
 
-
         public PokerHand(Card[] cards)
         {
             Cards = cards.ToList();
@@ -42,13 +41,14 @@ namespace Project
         public TypeOfHand HandleTwoDistinctValues()
         {
             var results = Cards.GroupBy(c => c.Value).ToDictionary(card => card.Key, card => card.Count());
-
-            while (results.Values.Max() == 4)
+            var max = results.Values.Max();
+            switch (max)
             {
-                return TypeOfHand.FourOfKind;
+                case 4:
+                    return TypeOfHand.FourOfKind;
+                default:
+                    return TypeOfHand.FullHouse;
             }
-            return TypeOfHand.FullHouse;
-
         }
 
         public TypeOfHand HandleThreeDistinctValues()
@@ -68,7 +68,6 @@ namespace Project
 
         public TypeOfHand HandleFiveDistinctValue()
         {
-
             var alexsDict = new Dictionary<TypeOfHand, bool> {
                 {TypeOfHand.RoyalFlush, IsRoyalFlush()},
                 {TypeOfHand.StraightFlush, IsStraightFlush()},
@@ -80,7 +79,6 @@ namespace Project
             var hand = alexsDict.First(item => item.Value == true);
 
             return hand.Key;
-
         }
 
         public bool IsStraightFlush() => IsStraight() && IsFlush();
@@ -105,11 +103,8 @@ namespace Project
 
         public bool IsFlush()
         {
-            // List<Suit> SuitList = new List<Suit>();
-
-            var x = Cards.Select(c => c.Suit);
-
-            return AreAllSuitsTheSame(x);
+            var cardSuits = Cards.Select(c => c.Suit).ToList();
+            return AreAllSuitsTheSame(cardSuits);
         }
 
         public bool AreAllSuitsTheSame(List<Suit> allSuits) => allSuits.All(x => x == Cards[0].Suit);
