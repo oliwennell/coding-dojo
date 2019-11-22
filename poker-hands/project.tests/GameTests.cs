@@ -27,6 +27,13 @@ namespace project.tests
         }
 
         [Test]
+        public void Check_that_the_game_has_4_players()
+        {
+            var game = new Game(4);
+            Assert.That(game.Players.Length, Is.EqualTo(4));
+        }
+
+        [Test]
         public void Deal_removes_card()
         {
             var game = new Game();

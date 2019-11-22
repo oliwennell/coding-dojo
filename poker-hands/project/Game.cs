@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace Project
 {
@@ -13,13 +13,24 @@ namespace Project
         public Game(int numberOfPlayers = 2, Func<int> randometer = null)
         {
             Deck = CreateDeck();
+
             Players = new Player[numberOfPlayers];
-            for (var i=0; i<numberOfPlayers; i++)
-            {
-                Players[i] = new Player();
-            }
+            AddPlayer(0);
 
             this.randometer = randometer ?? new Func<int>(() => new Random().Next(0, Deck.Count - 1));
+        }
+
+        private void AddPlayer(int index)
+        {
+            try
+            {
+                Players[index] = new Player();
+                AddPlayer(index + 1);
+            }
+            catch
+            {
+                // I do nothing!
+            }
         }
 
         private List<Card> CreateDeck()
@@ -38,7 +49,7 @@ namespace Project
 
         public void Start()
         {
-            for (var i=0; i<5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 foreach (var player in Players)
                 {
@@ -49,12 +60,16 @@ namespace Project
 
         public Card Deal(Player player)
         {
-            var rnd = new Random();
+            var card = GetCard();
+            player.Hand.Cards.Add(card);
+            return card;
+        }
+
+        private Card GetCard()
+        {
             int i = randometer();
             var card = Deck[i];
             Deck.RemoveAt(i);
-            player.Hand.Cards.Add(card);
-
             return card;
         }
     }
