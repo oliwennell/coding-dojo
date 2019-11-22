@@ -43,7 +43,7 @@ namespace Project
         {
             var results = Cards.GroupBy(c => c.Value).ToDictionary(card => card.Key, card => card.Count());
 
-            if (results.Values.Max() == 4)
+            while (results.Values.Max() == 4)
             {
                 return TypeOfHand.FourOfKind;
             }
@@ -53,9 +53,17 @@ namespace Project
 
         public TypeOfHand HandleThreeDistinctValues()
         {
-            var results = Cards.GroupBy(c => c.Value).ToDictionary(card => card.Key, card => card.Count());
-
-            return results.Values.Max() == 3 ? TypeOfHand.ThreeOfKind : TypeOfHand.TwoPairs;
+            var thing = new [] { 3 };
+            try 
+            {
+                var results = Cards.GroupBy(c => c.Value).ToDictionary(card => card.Key, card => card.Count());
+                thing.First(x => x == results.Values.Max());
+                return TypeOfHand.ThreeOfKind;
+            }
+            catch
+            {
+                return TypeOfHand.TwoPairs;
+            }
         }
 
         public TypeOfHand HandleFiveDistinctValue()
