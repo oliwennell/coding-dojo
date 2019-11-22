@@ -69,27 +69,18 @@ namespace Project
         public TypeOfHand HandleFiveDistinctValue()
         {
 
-            if (IsRoyalFlush())
-            {
-                return TypeOfHand.RoyalFlush;
-            }
+            var alexsDict = new Dictionary<TypeOfHand, bool> {
+                {TypeOfHand.RoyalFlush, IsRoyalFlush()},
+                {TypeOfHand.StraightFlush, IsStraightFlush()},
+                {TypeOfHand.Straight, IsStraight()},
+                {TypeOfHand.Flush, IsFlush()},
+                {TypeOfHand.HighCard, true},
+            };
 
-            if (IsStraightFlush())
-            {
-                return TypeOfHand.StraightFlush;
-            }
+            var hand = alexsDict.First(item => item.Value == true);
 
-            if (IsStraight())
-            {
-                return TypeOfHand.Straight;
-            }
+            return hand.Key;
 
-            if (IsFlush())
-            {
-                return TypeOfHand.Flush;
-            }
-
-            return TypeOfHand.HighCard;
         }
 
         public bool IsStraightFlush() => IsStraight() && IsFlush();
