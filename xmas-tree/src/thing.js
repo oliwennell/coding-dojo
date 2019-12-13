@@ -1,21 +1,25 @@
 
-String.prototype.pad = function(length) {
-    return this.padStart(length+(this.length/2), ' ')
-               .padEnd(Math.max(0, length * 2 - 1), ' ');
+String.prototype.pad = function (length) {
+    return this.padStart(length + (this.length / 2), ' ')
+        .padEnd(Math.max(0, length * 2 - 1), ' ');
 }
 
 class ChristmasTree {
 
-    static createTree(branchyHeighty) {
+    static createTree(branchyHeighty, star) {
 
-        const tree = [];
+        let tree = star ? "*".pad(branchyHeighty) + "\n" : '';
 
         for (let i = 0; i < branchyHeighty; i++) {
             const treeX = (i * 2) + 1;
             const level = "X".repeat(treeX).pad(branchyHeighty);
-            tree.push(level);
+            tree += (level + "\n");
         }
-        return tree.concat(["X".pad(branchyHeighty)]).join("\n");
-    }
 
+        tree += "X".pad(branchyHeighty)
+
+        console.log(tree);
+
+        return tree;
+    }
 }

@@ -19,8 +19,14 @@ describe("it's xmas time nearly", () => {
         expect(tree).toBe(" X \nXXX\n X ");
     });
 
+    it("draws a tree 3 with a star in height when passed 2 and 🌟", () => {
+        const tree = ChristmasTree.createTree(2, '🌟');
+
+        expect(tree).toBe(" * \n X \nXXX\n X ");
+    });
+
     it("draws a mega tree", () => {
-        const tree = ChristmasTree.createTree(10);
+        const tree = ChristmasTree.createTree(42);
 
         console.log(tree);
     });
