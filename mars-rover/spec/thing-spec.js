@@ -168,6 +168,20 @@ describe('Rover Mover', () => {
         });
     });
 
+    it('has a status code', () => {
+        const rover = {
+            x: 0,
+            y: 0,
+            directionFacing: 'N',
+        };
+        const commands = ['B', 'B'];
+
+        const newRover = executeCommands(rover, commands);
+
+        expect(newRover.isWorking).toEqual(true);
+    });
+
+
     // command not recognised
     // direction facing not recognised
     // coordinates in wrong format

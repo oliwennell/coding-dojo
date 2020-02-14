@@ -62,7 +62,11 @@ const applyCommand = (prevRover, command) => {
             break;
     }
 
-    return { ...prevRover, ...result }
+    return { 
+        ...prevRover,
+        ...result,
+        isWorking: true
+    }
 };
 
 const executeCommands = (initialRover, commands) => {
