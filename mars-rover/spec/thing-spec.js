@@ -100,4 +100,21 @@ describe('Rover Mover', () => {
             });
         });
     });
+
+    it("a long and winding road", () => {
+        const rover = {
+            x: 0,
+            y: 0,
+            directionFacing: 'N',
+        };
+        const commands = ['F', 'F', 'L', 'B', 'B', 'R', 'F'];
+
+        const newRover = executeCommands(rover, commands);
+
+        expect(newRover).toEqual({
+            x: 2,
+            y: 3,
+            directionFacing: 'N',
+        });
+    });
 });

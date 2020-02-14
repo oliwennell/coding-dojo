@@ -19,6 +19,10 @@ const turnRight = directionFacing => {
     return directionLookup[directionFacing];
 };
 
+const moveForward = rover => {
+    
+}
+
 const applyCommand = (prevRover, command) => {
     let result;
 
