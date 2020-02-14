@@ -20,17 +20,31 @@ const turnRight = directionFacing => {
 };
 
 const moveForward = rover => {
-    
-}
+    if (rover.directionFacing === 'N') {
+        return {
+            y: rover.y + 1
+        };
+    } else if (rover.directionFacing === 'E') {
+        return {
+            x: rover.x + 1
+        };
+    } else if (rover.directionFacing === 'S') {
+        return {
+            y: rover.y - 1
+        };
+    } else if (rover.directionFacing === 'W') {
+        return {
+            x: rover.x - 1
+        };
+    }
+};
 
 const applyCommand = (prevRover, command) => {
     let result;
 
     switch (command) {
         case 'F':
-            result = {
-                y: prevRover.y + 1
-            };
+            result = moveForward(prevRover);
             break;
         case 'B':
             result = {
