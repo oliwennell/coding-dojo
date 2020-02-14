@@ -101,6 +101,31 @@ describe('Rover Mover', () => {
         });
     });
 
+    [
+        { direction: 'W', resultantLocation: {x: -1 , y: 0} },
+        { direction: 'S', resultantLocation: {x: 0 , y: -1} },
+        { direction: 'E', resultantLocation: {x: 1, y: 0} },
+        { direction: 'N', resultantLocation: {x: 0, y: 1} },
+    ]
+    .forEach(({direction, resultantLocation}) => {
+        it('moves to correct location based on initial direction'), () => {
+            const rover = {
+                x: 0,
+                y: 0,
+                directionFacing: direction,
+            };
+            const commands = ['F'];
+
+            const newRover = executeCommands(rover, commands);
+
+            expect(newRover).toEqual({
+                x: resultantDirection.x,
+                y: resultantDirection.y,
+                directionFacing: direction,
+            });
+        }
+    })
+
     it("a long and winding road", () => {
         const rover = {
             x: 0,
