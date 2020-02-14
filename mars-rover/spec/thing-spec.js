@@ -167,4 +167,9 @@ describe('Rover Mover', () => {
             directionFacing: 'N',
         });
     });
+
+    // command not recognised
+    // direction facing not recognised
+    // coordinates in wrong format
+    // 
 });

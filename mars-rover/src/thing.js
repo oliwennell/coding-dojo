@@ -1,7 +1,7 @@
 // TO DO!
-// Set 'stop at an obstacle'
-// 'Shouldn't crash' - Igor
 // Handles Errors (Mismatch/Invalid commands)
+// 'Shouldn't crash' - Igor
+// Set 'stop at an obstacle'
 
 // Nice-To-Have
 // 45* Turns
