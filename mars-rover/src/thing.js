@@ -1,5 +1,4 @@
 // TO DO!
-// Tests - Complicated movement (Move + Turn)
 // Set 'stop at an obstacle'
 // 'Shouldn't crash' - Igor
 // Handles Errors (Mismatch/Invalid commands)
@@ -19,22 +18,24 @@ const turnRight = directionFacing => {
     return directionLookup[directionFacing];
 };
 
-const moveForward = rover => {
+const move = (rover, command) => {
+    const direction = command === 'F' ? 1 : -1;
+
     if (rover.directionFacing === 'N') {
         return {
-            y: rover.y + 1
+            y: rover.y + direction
         };
     } else if (rover.directionFacing === 'E') {
         return {
-            x: rover.x + 1
+            x: rover.x + direction
         };
     } else if (rover.directionFacing === 'S') {
         return {
-            y: rover.y - 1
+            y: rover.y - direction
         };
     } else if (rover.directionFacing === 'W') {
         return {
-            x: rover.x - 1
+            x: rover.x - direction
         };
     }
 };
@@ -44,12 +45,10 @@ const applyCommand = (prevRover, command) => {
 
     switch (command) {
         case 'F':
-            result = moveForward(prevRover);
+            result = move(prevRover, command);
             break;
         case 'B':
-            result = {
-                y: prevRover.y - 1
-            };
+            result = move(prevRover, command);
             break;
         case 'L':
             result = {

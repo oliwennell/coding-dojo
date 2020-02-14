@@ -108,7 +108,7 @@ describe('Rover Mover', () => {
         { direction: 'N', resultantLocation: {x: 0, y: 1} },
     ]
     .forEach(({direction, resultantLocation}) => {
-        it('moves to correct location based on initial direction', () => {
+        it(`moves forwards to correct location based on initial direction ${direction}`, () => {
             const rover = {
                 x: 0,
                 y: 0,
@@ -124,7 +124,32 @@ describe('Rover Mover', () => {
                 directionFacing: direction,
             });
         })
-    })
+    });
+
+    [
+        { direction: 'W', resultantLocation: {x: 1, y: 0} },
+        { direction: 'S', resultantLocation: {x: 0, y: 1} },
+        { direction: 'E', resultantLocation: {x: -1, y: 0} },
+        { direction: 'N', resultantLocation: {x: 0, y: -1} },
+    ]
+    .forEach(({direction, resultantLocation}) => {
+        it(`moves backwards to correct location based on initial direction ${direction}`, () => {
+            const rover = {
+                x: 0,
+                y: 0,
+                directionFacing: direction,
+            };
+            const commands = ['B'];
+
+            const newRover = executeCommands(rover, commands);
+
+            expect(newRover).toEqual({
+                x: resultantLocation.x,
+                y: resultantLocation.y,
+                directionFacing: direction,
+            });
+        })
+    });
 
     it("a long and winding road", () => {
         const rover = {
