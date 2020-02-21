@@ -14,6 +14,7 @@ describe('Rover Mover', () => {
             x: 0,
             y: 1,
             directionFacing: 'N',
+            isWorking: true
         });
     });
 
@@ -31,6 +32,7 @@ describe('Rover Mover', () => {
             x: 0,
             y: 2,
             directionFacing: 'N',
+            isWorking: true
         });
     });
 
@@ -48,6 +50,7 @@ describe('Rover Mover', () => {
             x: 0,
             y: -2,
             directionFacing: 'N',
+            isWorking: true
         });
     });
 
@@ -72,6 +75,7 @@ describe('Rover Mover', () => {
                 x: 0,
                 y: 0,
                 directionFacing: resultantDirection,
+                isWorking: true
             });
         });
     });
@@ -97,6 +101,7 @@ describe('Rover Mover', () => {
                 x: 0,
                 y: 0,
                 directionFacing: resultantDirection,
+                isWorking: true
             });
         });
     });
@@ -122,6 +127,7 @@ describe('Rover Mover', () => {
                 x: resultantLocation.x,
                 y: resultantLocation.y,
                 directionFacing: direction,
+                isWorking: true
             });
         })
     });
@@ -147,6 +153,7 @@ describe('Rover Mover', () => {
                 x: resultantLocation.x,
                 y: resultantLocation.y,
                 directionFacing: direction,
+                isWorking: true
             });
         })
     });
@@ -165,6 +172,7 @@ describe('Rover Mover', () => {
             x: 2,
             y: 3,
             directionFacing: 'N',
+            isWorking: true
         });
     });
 
