@@ -40,24 +40,28 @@ const move = (rover, command) => {
     }
 };
 
-const applyCommand = (prevRover, command) => {
+const applyCommand = (rover, command) => {
     let result;
+    
+    if(rover.directionFacing === 'Z'){
+        return { isWorking: false };
+    }
 
     switch (command) {
         case 'F':
-            result = move(prevRover, command);
+            result = move(rover, command);
             break;
         case 'B':
-            result = move(prevRover, command);
+            result = move(rover, command);
             break;
         case 'L':
             result = {
-                directionFacing: turnLeft(prevRover.directionFacing)
+                directionFacing: turnLeft(rover.directionFacing)
             };
             break;
         case 'R':
             result = {
-                directionFacing: turnRight(prevRover.directionFacing)
+                directionFacing: turnRight(rover.directionFacing)
             };
             break;
         default:
@@ -65,7 +69,7 @@ const applyCommand = (prevRover, command) => {
     }
 
     return { 
-        ...prevRover,
+        ...rover,
         ...result,
         isWorking: true
     }
