@@ -50,12 +50,20 @@ const move = (rover, command) => {
     }
 };
 
+const coordinateIsWappy = coordinate => {
+    if (!Number.isInteger(coordinate)) {
+        return true;
+    }
+}
+
 const applyCommand = (rover, command) => {
     let result;
     
     const directions = [North, South, East, West];
 
-    if(!directions.includes(rover.directionFacing)) 
+    if(coordinateIsWappy(rover.x) || 
+       coordinateIsWappy(rover.y) ||
+        !directions.includes(rover.directionFacing)) 
     {
         return { isWorking: false };
     }

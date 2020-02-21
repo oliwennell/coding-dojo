@@ -220,8 +220,27 @@ describe('Rover Mover', () => {
     
             expect(newRover.isWorking).toEqual(false);
         });
-    })
+    });
 
-    // coordinates in wrong format
-    // 
+    [
+        { x: 'wibble', y: 0 },
+        { x: 0, y: 'wibble' },
+        { x: 'wibble', y: 'wobble' },
+        { x: NaN, y: 0 },
+        { x: 0, y: NaN }
+    ]
+    .forEach(({x, y}) => {
+        it("coordinates is broken", () => {
+            const rover = {
+                x,
+                y,
+                directionFacing: 'N',
+            };
+            const commands = ['F'];
+    
+            const newRover = executeCommands(rover, commands);
+    
+            expect(newRover.isWorking).toEqual(false);
+        });
+    });
 });
