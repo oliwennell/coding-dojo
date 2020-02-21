@@ -189,8 +189,33 @@ describe('Rover Mover', () => {
         expect(newRover.isWorking).toEqual(true);
     });
 
+    it("command is broken", () => {
+        const rover = {
+            x: 0,
+            y: 0,
+            directionFacing: 'N',
+        };
+        const commands = ['P', 'Z'];
 
-    // command not recognised
+        const newRover = executeCommands(rover, commands);
+
+        expect(newRover.isWorking).toEqual(false);
+    });
+
+    it("direction facing is broken", () => {
+        const rover = {
+            x: 0,
+            y: 0,
+            directionFacing: 'Z',
+        };
+        const commands = ['F'];
+
+        const newRover = executeCommands(rover, commands);
+
+        expect(newRover.isWorking).toEqual(false);
+    });
+
+
     // direction facing not recognised
     // coordinates in wrong format
     // 

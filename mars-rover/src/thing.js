@@ -60,6 +60,8 @@ const applyCommand = (prevRover, command) => {
                 directionFacing: turnRight(prevRover.directionFacing)
             };
             break;
+        default:
+            return { isWorking: false };
     }
 
     return { 
