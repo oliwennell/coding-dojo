@@ -202,21 +202,26 @@ describe('Rover Mover', () => {
         expect(newRover.isWorking).toEqual(false);
     });
 
-    it("direction facing is broken", () => {
-        const rover = {
-            x: 0,
-            y: 0,
-            directionFacing: 'Z',
-        };
-        const commands = ['F'];
+    [
+        { directionFacing: 'Z' },
+        { directionFacing: 'PD' },
+        { directionFacing: 'FOO' }
+    ]
+    .forEach(({directionFacing}) => {
+        it("direction facing is broken", () => {
+            const rover = {
+                x: 0,
+                y: 0,
+                directionFacing: directionFacing,
+            };
+            const commands = ['F'];
+    
+            const newRover = executeCommands(rover, commands);
+    
+            expect(newRover.isWorking).toEqual(false);
+        });
+    })
 
-        const newRover = executeCommands(rover, commands);
-
-        expect(newRover.isWorking).toEqual(false);
-    });
-
-
-    // direction facing not recognised
     // coordinates in wrong format
     // 
 });
