@@ -8,32 +8,42 @@
 // Battery - Ability to recharge?
 // Pathfinding like a Pro
 
+const North = 'N';
+const East = 'E';
+const South = 'S';
+const West = 'W';
+
+const Forwards = 'F';
+const Backwards = 'B';
+const Left = 'L';
+const Right = 'R';
+
 const turnLeft = directionFacing => {
-    const directionLookup = { N: 'W', E: 'N', S: 'E', W: 'S' };
+    const directionLookup = { N: West, E: North, S: East, W: South };
     return directionLookup[directionFacing];
 };
 
 const turnRight = directionFacing => {
-    const directionLookup = { N: 'E', E: 'S', S: 'W', W: 'N' };
+    const directionLookup = { N: East, E: South, S: West, W: North };
     return directionLookup[directionFacing];
 };
 
 const move = (rover, command) => {
-    const direction = command === 'F' ? 1 : -1;
+    const direction = command === Forwards ? 1 : -1;
 
-    if (rover.directionFacing === 'N') {
+    if (rover.directionFacing === North) {
         return {
             y: rover.y + direction
         };
-    } else if (rover.directionFacing === 'E') {
+    } else if (rover.directionFacing === East) {
         return {
             x: rover.x + direction
         };
-    } else if (rover.directionFacing === 'S') {
+    } else if (rover.directionFacing === South) {
         return {
             y: rover.y - direction
         };
-    } else if (rover.directionFacing === 'W') {
+    } else if (rover.directionFacing === West) {
         return {
             x: rover.x - direction
         };
@@ -43,7 +53,7 @@ const move = (rover, command) => {
 const applyCommand = (rover, command) => {
     let result;
     
-    const directions = ['N', 'S', 'E', 'W'];
+    const directions = [North, South, East, West];
 
     if(!directions.includes(rover.directionFacing)) 
     {
@@ -51,18 +61,18 @@ const applyCommand = (rover, command) => {
     }
 
     switch (command) {
-        case 'F':
+        case Forwards:
             result = move(rover, command);
             break;
-        case 'B':
+        case Backwards:
             result = move(rover, command);
             break;
-        case 'L':
+        case Left:
             result = {
                 directionFacing: turnLeft(rover.directionFacing)
             };
             break;
-        case 'R':
+        case Right:
             result = {
                 directionFacing: turnRight(rover.directionFacing)
             };
