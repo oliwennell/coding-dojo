@@ -43,7 +43,10 @@ const move = (rover, command) => {
 const applyCommand = (rover, command) => {
     let result;
     
-    if(rover.directionFacing === 'Z'){
+    const directions = ['N', 'S', 'E', 'W'];
+
+    if(!directions.includes(rover.directionFacing)) 
+    {
         return { isWorking: false };
     }
 
