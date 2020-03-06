@@ -18,7 +18,6 @@ class List {
         let node = this.head;
 
         while(node && node.value() !== value){
-            
             node = node.next
         }
         
@@ -26,10 +25,14 @@ class List {
     }
 
     append(value) {
-        if(!this.head){
+       if(!this.head){
             this.head = new Node(value);
         }else{
-            this.head.next = new Node(value);
+            let node = this.head;
+            while(node && node.next){ 
+                node = node.next;
+            }
+            node.next = new Node(value);
         }
     }
 }
