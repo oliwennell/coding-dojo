@@ -1,7 +1,7 @@
 class Node {
-    constructor() {
-        this.data = null;
-        this.next = null;
+    constructor(value, next = null) {
+        this.data = value;
+        this.next = next;
     }
 
     value() {
@@ -11,14 +11,14 @@ class Node {
 
 class List {
     constructor() {
-        this.head = new Node();
+        this.head = null;
     }
 
     find() {
         return this.head;
     }
 
-    add(value) {
-        this.head.data = value;
+    append(value) {
+        this.head.next = new Node(value);
     }
 }
