@@ -51,7 +51,12 @@ class List {
 
         while(current!== null){
             if(current.data === value){
-                previous.next = current.next;
+                // Removing first item?
+                if (current == this.head) {
+                    this.head = current.next;
+                } else {
+                    previous.next = current.next;
+                }
             }
             previous = current;
             current = current.next;

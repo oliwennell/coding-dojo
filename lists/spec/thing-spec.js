@@ -54,5 +54,33 @@ describe("List", () => {
         list.remove("Polly");
 
         expect(list.find('Polly')).toBe(null);
+        expect(list.find("Sue").value()).toBe("Sue");
+        expect(list.find("fred").value()).toBe("fred");
+    });
+
+    it("should remove an item from the start", () => {
+        const list = new List();
+        list.append("fred");
+        list.append("Sue");
+        list.append("Polly");
+
+        list.remove("fred");
+
+        expect(list.find('fred')).toBe(null);
+        expect(list.find("Sue").value()).toBe("Sue");
+        expect(list.find("Polly").value()).toBe("Polly");
+    });
+
+    it("should remove an item from the start", () => {
+        const list = new List();
+        list.append("Sue");
+        list.append("fred");
+        list.append("Polly");
+
+        list.remove("fred");
+
+        expect(list.find('fred')).toBe(null);
+        expect(list.find("Sue").value()).toBe("Sue");
+        expect(list.find("Polly").value()).toBe("Polly");
     });
 });
