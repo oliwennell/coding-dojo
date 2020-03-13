@@ -35,4 +35,26 @@ class List {
             node.next = new Node(value);
         }
     }
+
+    *traverse(){
+        let current = this.head;
+
+        while(current !== null){
+            yield current.data;
+            current = current.next;
+        }
+    }
+
+    remove(value) {
+        let current = this.head;
+        let previous = this.head;
+
+        while(current!== null){
+            if(current.data === value){
+                previous.next = current.next;
+            }
+            previous = current;
+            current = current.next;
+        }
+    }
 }

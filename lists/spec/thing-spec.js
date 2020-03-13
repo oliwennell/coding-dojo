@@ -34,4 +34,25 @@ describe("List", () => {
         expect(list.find("fred").value()).toBe("fred");
         expect(list.find("Polly").value()).toBe("Polly");
     });
+
+    it('should traverse through a linked list', () => {
+        const list = new List();
+        list.append('z');
+        list.append('y');
+
+        const arr = [...list.traverse()]
+
+        expect(arr).toEqual(['z', 'y']);
+    });
+
+    it("should remove an item", () => {
+        const list = new List();
+        list.append("fred");
+        list.append("Sue");
+        list.append("Polly");
+
+        list.remove("Polly");
+
+        expect(list.find('Polly')).toBe(null);
+    });
 });
