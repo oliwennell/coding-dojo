@@ -25,18 +25,20 @@ class List {
     }
 
     append(value) {
-       if(!this.head){
+        const listIsEmpty = !!this.head;
+
+        if (listIsEmpty){
             this.head = new Node(value);
-        }else{
+        } else {
             let node = this.head;
-            while(node && node.next){ 
+            while (node && node.next){ 
                 node = node.next;
             }
             node.next = new Node(value);
         }
     }
 
-    *traverse(){
+    *displayList(){
         let current = this.head;
 
         while(current !== null){
@@ -46,20 +48,25 @@ class List {
     }
 
     remove(value) {
+        if (this.head.data === value) {
+            this.removeFirstItem();
+            return;
+        }
+
         let current = this.head;
         let previous = this.head;
 
-        while(current!== null){
+        while(current !== null){
             if(current.data === value){
-                // Removing first item?
-                if (current == this.head) {
-                    this.head = current.next;
-                } else {
-                    previous.next = current.next;
-                }
+                previous.next = current.next;
             }
+
             previous = current;
             current = current.next;
         }
+    }
+
+    removeFirstItem() {
+        this.head = this.head.next;
     }
 }

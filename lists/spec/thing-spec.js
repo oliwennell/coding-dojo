@@ -35,12 +35,12 @@ describe("List", () => {
         expect(list.find("Polly").value()).toBe("Polly");
     });
 
-    it('should traverse through a linked list', () => {
+    it('should display linked list', () => {
         const list = new List();
         list.append('z');
         list.append('y');
 
-        const arr = [...list.traverse()]
+        const arr = [...list.displayList()]
 
         expect(arr).toEqual(['z', 'y']);
     });
@@ -71,7 +71,7 @@ describe("List", () => {
         expect(list.find("Polly").value()).toBe("Polly");
     });
 
-    it("should remove an item from the start", () => {
+    it("should remove an item from the middle", () => {
         const list = new List();
         list.append("Sue");
         list.append("fred");
