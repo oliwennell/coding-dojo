@@ -9,7 +9,7 @@ class Node {
     }
 }
 
-class List {
+class SinglyLinkedList {
     constructor() {
         this.head = null;
     }
@@ -25,16 +25,16 @@ class List {
     }
 
     append(value) {
-        const listIsEmpty = !!this.head;
-
-        if (listIsEmpty){
-            this.head = new Node(value);
-        } else {
+        const listHasItems = !!this.head;
+        
+        if (listHasItems){
             let node = this.head;
             while (node && node.next){ 
                 node = node.next;
             }
             node.next = new Node(value);
+        } else {
+            this.head = new Node(value);
         }
     }
 
@@ -48,17 +48,17 @@ class List {
     }
 
     remove(value) {
-        if (this.head.data === value) {
-            this.removeFirstItem();
-            return;
-        }
-
         let current = this.head;
         let previous = this.head;
 
         while(current !== null){
             if(current.data === value){
-                previous.next = current.next;
+                
+                if (this.head === current) {
+                    this.head = this.head.next;
+                } else {
+                    previous.next = current.next;
+                }
             }
 
             previous = current;
