@@ -9,6 +9,21 @@ class Node {
     }
 }
 
+class DoublyLinkedList {
+    constructor() {
+        this.head = null;
+    }
+
+    find(value) {
+        let node = this.head;
+        return node;
+    }
+
+    append(value) {
+        this.head.value = "fred";
+    }
+}
+
 class SinglyLinkedList {
     constructor() {
         this.head = null;

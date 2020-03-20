@@ -1,3 +1,20 @@
+describe("DoublyLinkedList", () => {
+
+    it("when doubly list is initialised it is empty", () => {
+        const list = new DoublyLinkedList();
+        expect(list.find("fred")).toBe(null);
+    });
+
+    it("should return the value", () => {
+        const list = new DoublyLinkedList();
+        list.append("fred");
+        expect(list.find("fred").value()).toBe("fred");
+    });
+})
+
+
+
+
 describe("SinglyLinkedList", () => {
 
     it("when list is initialised it is empty", () => {
