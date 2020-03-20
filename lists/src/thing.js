@@ -13,6 +13,7 @@ class DoublyNode {
     constructor(value, next = null) {
         this.data = value;
         this.next = next;
+        this.previous = null;
     }
 
     value() {
@@ -28,14 +29,23 @@ class DoublyLinkedList {
 
     find(value) {
         let node = this.tail;
+
+        while (node !== null && node.value() !== value) {
+            node = node.previous;
+        }
+
         return node;
     }
 
     append(value) {
-        this.head = new DoublyNode();
-        
-        this.head.data = value;
-        this.tail = this.head;
+        if (!this.head) {
+            this.head = new DoublyNode(value);
+            this.tail = this.head;
+        } else {
+            this.head.next = new DoublyNode(value);
+            this.tail = this.head.next;
+            this.tail.previous = this.head;
+        }
     }
 }
 
