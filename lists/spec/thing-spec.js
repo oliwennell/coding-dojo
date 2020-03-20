@@ -7,7 +7,15 @@ describe("DoublyLinkedList", () => {
 
     it("should return the value", () => {
         const list = new DoublyLinkedList();
+        list.append("sue");
+        expect(list.find("sue").value()).toBe("sue");
+    });
+
+    it("should return Sue the value", () => {
+        const list = new DoublyLinkedList();
         list.append("fred");
+        list.append("Sue");
+        expect(list.find("Sue").value()).toBe("Sue");
         expect(list.find("fred").value()).toBe("fred");
     });
 })

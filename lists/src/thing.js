@@ -9,6 +9,17 @@ class Node {
     }
 }
 
+class DoublyNode {
+    constructor(value, next = null) {
+        this.data = value;
+        this.next = next;
+    }
+
+    value() {
+        return this.data;
+    }
+}
+
 class DoublyLinkedList {
     constructor() {
         this.head = null;
@@ -20,7 +31,8 @@ class DoublyLinkedList {
     }
 
     append(value) {
-        this.head.value = "fred";
+        this.head = new DoublyNode();
+        this.head.data = value;
     }
 }
 
