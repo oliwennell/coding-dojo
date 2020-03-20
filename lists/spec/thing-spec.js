@@ -8,6 +8,7 @@ describe("DoublyLinkedList", () => {
     it("should return the value", () => {
         const list = new DoublyLinkedList();
         list.append("sue");
+
         expect(list.find("sue").value()).toBe("sue");
     });
 

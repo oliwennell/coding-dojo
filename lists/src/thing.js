@@ -23,16 +23,19 @@ class DoublyNode {
 class DoublyLinkedList {
     constructor() {
         this.head = null;
+        this.tail = null;
     }
 
     find(value) {
-        let node = this.head;
+        let node = this.tail;
         return node;
     }
 
     append(value) {
         this.head = new DoublyNode();
+        
         this.head.data = value;
+        this.tail = this.head;
     }
 }
 
