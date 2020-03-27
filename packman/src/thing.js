@@ -4,7 +4,8 @@ function createGrid(rowPositionPackman, columnPositionPackman) {
     arr.push(['.', '.', '.']);
     arr.push(['.', '.', '.']);
     
-    if(rowPositionPackman && columnPositionPackman) {
+    if(Number.isInteger(rowPositionPackman) && Number.isInteger(columnPositionPackman)) {
+
         arr[rowPositionPackman][columnPositionPackman] = "V";
     }
 

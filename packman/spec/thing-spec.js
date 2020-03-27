@@ -26,7 +26,7 @@ describe('Packman game', () => {
         ]);
     })
 
-    it('place packman on the correct column', () => {
+    it('place packman on the first row', () => {
         let grid = createGrid(0, 1);
         expect(grid).toEqual([
             ['.', 'V', '.'],
