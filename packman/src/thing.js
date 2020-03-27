@@ -11,4 +11,3 @@ function createGrid(rowPositionPackman, columnPositionPackman) {
 
     return arr;
 }
-

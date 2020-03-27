@@ -15,7 +15,7 @@ describe('Packman game', () => {
             ['.', 'V', '.'],
             ['.', '.', '.']
         ]);
-    })
+    });
 
     it('place packman on the correct column', () => {
         let grid = createGrid(1, 2);
@@ -24,7 +24,7 @@ describe('Packman game', () => {
             ['.', '.', 'V'],
             ['.', '.', '.']
         ]);
-    })
+    });
 
     it('place packman on the first row', () => {
         let grid = createGrid(0, 1);
@@ -33,6 +33,5 @@ describe('Packman game', () => {
             ['.', '.', '.'],
             ['.', '.', '.']
         ]);
-    })
-
+    });
 });
