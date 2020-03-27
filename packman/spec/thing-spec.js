@@ -17,4 +17,22 @@ describe('Packman game', () => {
         ]);
     })
 
+    it('place packman on the correct column', () => {
+        let grid = createGrid(1, 2);
+        expect(grid).toEqual([
+            ['.', '.', '.'],
+            ['.', '.', 'V'],
+            ['.', '.', '.']
+        ]);
+    })
+
+    it('place packman on the correct column', () => {
+        let grid = createGrid(0, 1);
+        expect(grid).toEqual([
+            ['.', 'V', '.'],
+            ['.', '.', '.'],
+            ['.', '.', '.']
+        ]);
+    })
+
 });

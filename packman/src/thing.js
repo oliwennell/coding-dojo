@@ -3,7 +3,11 @@ function createGrid(rowPositionPackman, columnPositionPackman) {
     arr.push(['.', '.', '.']);
     arr.push(['.', '.', '.']);
     arr.push(['.', '.', '.']);
-    arr[rowPositionPackman][columnPositionPackman] = "V";
+    
+    if(rowPositionPackman && columnPositionPackman) {
+        arr[rowPositionPackman][columnPositionPackman] = "V";
+    }
+
     return arr;
 }
 
