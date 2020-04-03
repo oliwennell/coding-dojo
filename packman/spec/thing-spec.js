@@ -37,10 +37,43 @@ describe('Grid', () => {
 });
 
 describe('move Packman', () => {
-    it('move function', () => {
-      const grid = createGrid(1,1)
+    it('move packman - right', () => {
+      const grid = createGrid(1, 1)
       const nextGrid = movePackman(grid, "right")
-      const result = createGrid(1,2)
-      expect(nextGrid).toEqual(result)
-    }) 
+      expect(nextGrid).toEqual([
+        ['.', '.', '.'],
+        ['.', '.', 'V'],
+        ['.', '.', '.']
+    ])
+    })
+
+    it('move packman - left', () => {
+        const grid = createGrid(1, 1)
+        const nextGrid = movePackman(grid, "left")
+        expect(nextGrid).toEqual([
+            ['.', '.', '.'],
+            ['V', '.', '.'],
+            ['.', '.', '.']
+        ])
+    })
+
+    it('move packman - up', () => {
+        const grid = createGrid(1, 1)
+        const nextGrid = movePackman(grid, "up")
+        expect(nextGrid).toEqual([
+            ['.', 'V', '.'],
+            ['.', '.', '.'],
+            ['.', '.', '.']
+        ])
+    })
+
+    it('move packman - down', () => {
+        const grid = createGrid(1, 1)
+        const nextGrid = movePackman(grid, "down")
+        expect(nextGrid).toEqual([
+            ['.', '.', '.'],
+            ['.', '.', '.'],
+            ['.', 'V', '.']
+        ])
+    })
 });
