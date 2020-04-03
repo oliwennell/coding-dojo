@@ -1,4 +1,4 @@
-describe('Packman game', () => {
+describe('Grid', () => {
     it('there is a grid', () => {
         let grid = createGrid();
         expect(grid).toEqual([
@@ -34,4 +34,13 @@ describe('Packman game', () => {
             ['.', '.', '.']
         ]);
     });
+});
+
+describe('move Packman', () => {
+    it('move function', () => {
+      const grid = createGrid(1,1)
+      const nextGrid = movePackman(grid, "right")
+      const result = createGrid(1,2)
+      expect(nextGrid).toEqual(result)
+    }) 
 });

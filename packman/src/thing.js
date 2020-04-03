@@ -11,3 +11,7 @@ function createGrid(rowPositionPackman, columnPositionPackman) {
 
     return arr;
 }
+
+function movePackman(grid, direction) {
+return grid
+}
